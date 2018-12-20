@@ -16,8 +16,8 @@ void MoveBackward()
   analogWrite(inD, pwmL);
 }
 
-//Turn right
-void SpinRight()
+//Turn left
+void SpinLeft()
 {
   digitalWrite(inA, LOW);
   analogWrite(inB, pwmR);
@@ -25,8 +25,8 @@ void SpinRight()
   digitalWrite(inD, LOW);
 }
 
-//Turn left
-void SpinLeft()
+//Turn right
+void SpinRight()
 {
   analogWrite(inA, pwmR);
   digitalWrite(inB, LOW);

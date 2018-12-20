@@ -173,6 +173,7 @@ namespace ControlApp
             randomWalkBtn.Enabled = false;
             wallFollowBtn.Enabled = true;
             workingStatusTextBox.Text = "Automatic: Random Walk!";
+            RFserialPort.Write("S");
         }
 
         /// <summary>

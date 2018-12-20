@@ -27,6 +27,11 @@ char dataRead, dataWrite; // Variables to store data
 int pwmL = 100, pwmR = 100;
 float leftDistance, frontDistance, rightDistance;
 int obstaclePosition;
+long pmillis = 0;
+long timeCheckStuck = 0;
+bool manual = 1, randomWalk = 1;
+unsigned int skip = 61000;
+
 //==============================================//
 //==========    SET UP COMPONENTS    ===========//
 //==============================================//
@@ -68,37 +73,72 @@ void loop()
 {
   // put your main code here, to run repeatedly:
   /*Read data from RF station*/
-  if(radio.available())
+  if (radio.available())
   {
-    while(radio.available())
+    while (radio.available())
     {
       radio.read(&dataRead, sizeof(dataRead));
       delay(100);
       Serial.println(dataRead);
     }
   }
-
-  switch(dataRead)
+  /*Mode selections*/
+  switch (dataRead)
   {
-    case 'F':
-      MoveForward();
-      delay(2000);
-      Stop();
+    case 'M':
+      manual = 1;
       break;
-    case 'B':
-      MoveBackward();
-      delay(2000);
-      Stop();
+    case 'A':
+      manual = 0;
       break;
-    case 'L':
-      SpinLeft();
-      delay(2000);
-      Stop();
+    case 'W':
+      randomWalk = 0;
       break;
-    case 'R':
-      SpinRight();
-      delay(2000);
-      Stop();
+    case 'D':
+      randomWalk = 1;
       break;
+  }
+
+  if (millis() - pmillis > 5)
+  {
+    if (skip < 60000)
+    {
+      skip = skip - 5;
+      if (millis() - timeCheckStuck < 500)
+      {
+        CheckCornerStuck();
+      }
+    }
+    /*
+    if (CountAngle) {
+      AngleCount = AngleCount + 5;
+    }
+    if (CountDistance) {
+      DistanceCount = DistanceCount + 5;
+    }
+    */
+    pmillis = millis();
+  }
+  
+  //skip: end the loop here. to avoid using delay
+  if (skip >= 1 && skip < 60000)
+  {
+    return;
+  }
+
+  if (manual)
+  {
+    ManualControl();
+  }
+  else
+  {
+    if (randomWalk)
+    {
+      RandomWalk();
+    }
+    else
+    {
+      
+    }
   }
 }
