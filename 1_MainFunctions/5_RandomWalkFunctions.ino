@@ -50,7 +50,7 @@ void CheckCornerStuck()
       if (rightDistance <= 3)
       {
         SpinRight();
-        skip = 1000;
+        skip = 1500;
       }
       break;
     case 3:
@@ -58,7 +58,7 @@ void CheckCornerStuck()
       if (leftDistance <= 3)
       {
         SpinLeft();
-        skip = 1000;
+        skip = 1500;
       }
       break;
   }

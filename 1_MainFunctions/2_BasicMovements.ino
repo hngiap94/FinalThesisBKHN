@@ -1,9 +1,9 @@
 //Move in forward direction
 void MoveForward()
 {
-  analogWrite(inA, pwmR);
+  analogWrite(inA, pwmL);
   digitalWrite(inB, LOW);
-  analogWrite(inC, pwmL);
+  analogWrite(inC, pwmR);
   digitalWrite(inD, LOW);
 }
 
@@ -11,27 +11,27 @@ void MoveForward()
 void MoveBackward()
 {
   digitalWrite(inA, LOW);
-  analogWrite(inB, pwmR);
+  analogWrite(inB, pwmL);
   digitalWrite(inC, LOW);
-  analogWrite(inD, pwmL);
+  analogWrite(inD, pwmR);
 }
 
 //Turn left
 void SpinLeft()
 {
   digitalWrite(inA, LOW);
-  analogWrite(inB, pwmR);
-  analogWrite(inC, pwmL);
+  analogWrite(inB, pwmL);
+  analogWrite(inC, pwmR);
   digitalWrite(inD, LOW);
 }
 
 //Turn right
 void SpinRight()
 {
-  analogWrite(inA, pwmR);
+  analogWrite(inA, pwmL);
   digitalWrite(inB, LOW);
   digitalWrite(inC, LOW);
-  analogWrite(inD, pwmL);
+  analogWrite(inD, pwmR);
 }
 
 //Stop

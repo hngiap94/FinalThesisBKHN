@@ -17,6 +17,9 @@
 #define trigLeft 48
 #define echoLeft 49
 
+//#define trigWallSensor
+//#define echoWallSensor
+
 #define IRSensorRight 42
 #define IRSensorLeft 43
 
@@ -25,12 +28,17 @@ const uint64_t pipes[2] = {0xE8E8F0F0E1LL, 0xA7A7C9C9E1LL}; // Set addresses of 
 char dataRead, dataWrite; // Variables to store data
 
 int pwmL = 100, pwmR = 100;
-float leftDistance, frontDistance, rightDistance;
+int defaultPWML = 100, defaultPWMR = 100;
+int spiralPWML = 100, spiralPWMR = 50;
+int automaticMode = 1;
+float leftDistance, frontDistance, rightDistance, wallDistance;
 int obstaclePosition;
 long pmillis = 0;
 long timeCheckStuck = 0;
 bool manual = 1, randomWalk = 1;
 unsigned int skip = 61000;
+long defaultAutoTime = 180000;
+long startAutoTime, stopAutoTime;
 
 //==============================================//
 //==========    SET UP COMPONENTS    ===========//
@@ -87,15 +95,17 @@ void loop()
   {
     case 'M':
       manual = 1;
+      Stop();
+      dataRead = ' ';
       break;
     case 'A':
       manual = 0;
-      break;
-    case 'W':
-      randomWalk = 0;
-      break;
-    case 'D':
-      randomWalk = 1;
+      dataRead = ' ';
+      pwmL = spiralPWML;
+      pwmR = spiralPWMR;
+      automaticMode = 1;
+      startAutoTime = millis();
+      stopAutoTime = defaultAutoTime;
       break;
   }
 
@@ -126,19 +136,23 @@ void loop()
     return;
   }
 
+/*MAIN PROGRAM*/
   if (manual)
   {
     ManualControl();
   }
   else
   {
-    if (randomWalk)
+    switch(automaticMode)
     {
-      RandomWalk();
-    }
-    else
-    {
-      
+      case 1:
+        SpiralMovement();
+        break;
+      case 2:
+        RandomWalk();
+        break;
+      case 3:
+        break;
     }
   }
 }

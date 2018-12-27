@@ -79,10 +79,11 @@ namespace ControlApp
         {
             try
             {
-                RFserialPort.Close();
-                //RFserialPort.Write("M");
-                ResetControlApp();
+                RFserialPort.Write("M");
                 //RFserialPort.Write("S");
+                RFserialPort.Close();
+                ResetControlApp();
+                
             }
             catch (UnauthorizedAccessException)
             {
@@ -170,10 +171,10 @@ namespace ControlApp
             manualControlBox.Enabled = true;
             automaticModeBtn.Enabled = true;
             automaticControlBox.Enabled = false;
-            randomWalkBtn.Enabled = false;
-            wallFollowBtn.Enabled = true;
-            workingStatusTextBox.Text = "Automatic: Random Walk!";
-            RFserialPort.Write("S");
+            startAutoBtn.Enabled = true;
+            stopAutoBtn.Enabled = false;
+            workingStatusTextBox.Text = "Manual Control Mode!";
+            //RFserialPort.Write("S");
         }
 
         /// <summary>
@@ -184,42 +185,42 @@ namespace ControlApp
         /// created by hngiap
         private void automaticModeBtn_Click(object sender, EventArgs e)
         {
-            RFserialPort.Write("A");
+            //RFserialPort.Write("A");
             manualModeBtn.Enabled = true;
             manualControlBox.Enabled = false;
             automaticModeBtn.Enabled = false;
             automaticControlBox.Enabled = true;
-            randomWalkBtn.Enabled = false;
-            wallFollowBtn.Enabled = true;
-            workingStatusTextBox.Text = "Automatic: Random Walk!";
+            startAutoBtn.Enabled = true;
+            stopAutoBtn.Enabled = false;
+            workingStatusTextBox.Text = "Waiting to start...";
         }
 
         /// <summary>
-        /// Event when button "Random Walk Mode" is clicked
+        /// Event when button "Start!" is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// created by hngiap
-        private void randomWalkBtn_Click(object sender, EventArgs e)
+        private void startAutoBtn_Click(object sender, EventArgs e)
         {
-            RFserialPort.Write("D");
-            randomWalkBtn.Enabled = false;
-            wallFollowBtn.Enabled = true;
-            workingStatusTextBox.Text = "Automatic: Random Walk!";
+            RFserialPort.Write("A");
+            startAutoBtn.Enabled = false;
+            stopAutoBtn.Enabled = true;
+            workingStatusTextBox.Text = "Automatic Control Mode";
         }
 
         /// <summary>
-        /// Event when button "Wall Follow Mode" is clicked
+        /// Event when button "Stop!" is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// created by hngiap
-        private void wallFollowBtn_Click(object sender, EventArgs e)
+        private void stopAutoBtn_Click(object sender, EventArgs e)
         {
-            RFserialPort.Write("W");
-            randomWalkBtn.Enabled = true;
-            wallFollowBtn.Enabled = false;
-            workingStatusTextBox.Text = "Automatic: Wall Follow!";
+            RFserialPort.Write("M");
+            startAutoBtn.Enabled = true;
+            stopAutoBtn.Enabled = false;
+            workingStatusTextBox.Text = "Waiting to start...";
         }
 
         /// <summary>
@@ -234,6 +235,8 @@ namespace ControlApp
             automaticControlBox.Enabled = false;
             connectionStatusTextBox.BackColor = Color.Red;
             connectionStatusTextBox.Text = "Disconnected!";
+            portComboBox.Items.Clear();
+            portComboBox.Text = "";
             baudrateComboBox.SelectedIndex = 0;
             connectBtn.Enabled = true;
             disconnectBtn.Enabled = false;
@@ -241,17 +244,17 @@ namespace ControlApp
             batteryStatusProgressBar.Value = 0;
             workingStatusTextBox.Text = "Offline!";
         }
+
+        
     }
 }
-/* List of command:
+/* 
+List of command:
         M: enable manual control
-        A: automatic mode
+        A: start automatic mode
         F: run foward
         B: run backward
         R: turn right
         L: turn left
         S: stop
-        Z: zigzag mode
-        D: random mode
-        W: wall follow mode
 */

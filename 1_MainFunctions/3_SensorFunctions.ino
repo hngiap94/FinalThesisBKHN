@@ -20,11 +20,11 @@ void GetObstacleDistance(int trigPin, int echoPin, float& distance)
 bool IsObstacleDetected()
 {
   /*Read distance from sensors*/
-  GetObstacleDistance(trigRight, echoRight, rightDistance);
-  delay(20);
   GetObstacleDistance(trigFront, echoFront, frontDistance);
   delay(20);
   GetObstacleDistance(trigLeft, echoLeft, leftDistance);
+  delay(20);
+  GetObstacleDistance(trigRight, echoRight, rightDistance);
   delay(20);
 
   /*Check conditions if any obstacle detected or not*/

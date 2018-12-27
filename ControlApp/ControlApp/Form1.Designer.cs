@@ -35,8 +35,13 @@
             this.turnLeftBtn = new System.Windows.Forms.Button();
             this.forwardBtn = new System.Windows.Forms.Button();
             this.automaticControlBox = new System.Windows.Forms.GroupBox();
-            this.wallFollowBtn = new System.Windows.Forms.Button();
-            this.randomWalkBtn = new System.Windows.Forms.Button();
+            this.minutesComboBox = new System.Windows.Forms.ComboBox();
+            this.hoursComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.scheduleCheckBox = new System.Windows.Forms.CheckBox();
+            this.stopAutoBtn = new System.Windows.Forms.Button();
+            this.startAutoBtn = new System.Windows.Forms.Button();
             this.serialConnectionBox = new System.Windows.Forms.GroupBox();
             this.disconnectBtn = new System.Windows.Forms.Button();
             this.connectBtn = new System.Windows.Forms.Button();
@@ -127,8 +132,13 @@
             // 
             // automaticControlBox
             // 
-            this.automaticControlBox.Controls.Add(this.wallFollowBtn);
-            this.automaticControlBox.Controls.Add(this.randomWalkBtn);
+            this.automaticControlBox.Controls.Add(this.minutesComboBox);
+            this.automaticControlBox.Controls.Add(this.hoursComboBox);
+            this.automaticControlBox.Controls.Add(this.label2);
+            this.automaticControlBox.Controls.Add(this.label1);
+            this.automaticControlBox.Controls.Add(this.scheduleCheckBox);
+            this.automaticControlBox.Controls.Add(this.stopAutoBtn);
+            this.automaticControlBox.Controls.Add(this.startAutoBtn);
             this.automaticControlBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.automaticControlBox.Location = new System.Drawing.Point(360, 119);
             this.automaticControlBox.Name = "automaticControlBox";
@@ -137,27 +147,96 @@
             this.automaticControlBox.TabStop = false;
             this.automaticControlBox.Text = "Automatic Mode Control";
             // 
-            // wallFollowBtn
+            // minutesComboBox
             // 
-            this.wallFollowBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wallFollowBtn.Location = new System.Drawing.Point(174, 58);
-            this.wallFollowBtn.Name = "wallFollowBtn";
-            this.wallFollowBtn.Size = new System.Drawing.Size(117, 61);
-            this.wallFollowBtn.TabIndex = 0;
-            this.wallFollowBtn.Text = "Wall Follow Mode";
-            this.wallFollowBtn.UseVisualStyleBackColor = true;
-            this.wallFollowBtn.Click += new System.EventHandler(this.wallFollowBtn_Click);
+            this.minutesComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.minutesComboBox.FormattingEnabled = true;
+            this.minutesComboBox.Items.AddRange(new object[] {
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55"});
+            this.minutesComboBox.Location = new System.Drawing.Point(140, 118);
+            this.minutesComboBox.Name = "minutesComboBox";
+            this.minutesComboBox.Size = new System.Drawing.Size(121, 32);
+            this.minutesComboBox.TabIndex = 3;
             // 
-            // randomWalkBtn
+            // hoursComboBox
             // 
-            this.randomWalkBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.randomWalkBtn.Location = new System.Drawing.Point(25, 58);
-            this.randomWalkBtn.Name = "randomWalkBtn";
-            this.randomWalkBtn.Size = new System.Drawing.Size(118, 61);
-            this.randomWalkBtn.TabIndex = 0;
-            this.randomWalkBtn.Text = "Random Walk Mode";
-            this.randomWalkBtn.UseVisualStyleBackColor = true;
-            this.randomWalkBtn.Click += new System.EventHandler(this.randomWalkBtn_Click);
+            this.hoursComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.hoursComboBox.FormattingEnabled = true;
+            this.hoursComboBox.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.hoursComboBox.Location = new System.Drawing.Point(140, 76);
+            this.hoursComboBox.Name = "hoursComboBox";
+            this.hoursComboBox.Size = new System.Drawing.Size(121, 32);
+            this.hoursComboBox.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2.Location = new System.Drawing.Point(36, 126);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 24);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Minutes";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(36, 76);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Hours";
+            // 
+            // scheduleCheckBox
+            // 
+            this.scheduleCheckBox.AutoSize = true;
+            this.scheduleCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.scheduleCheckBox.Location = new System.Drawing.Point(25, 42);
+            this.scheduleCheckBox.Name = "scheduleCheckBox";
+            this.scheduleCheckBox.Size = new System.Drawing.Size(110, 28);
+            this.scheduleCheckBox.TabIndex = 1;
+            this.scheduleCheckBox.Text = "Schedule";
+            this.scheduleCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // stopAutoBtn
+            // 
+            this.stopAutoBtn.Enabled = false;
+            this.stopAutoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopAutoBtn.Location = new System.Drawing.Point(160, 168);
+            this.stopAutoBtn.Name = "stopAutoBtn";
+            this.stopAutoBtn.Size = new System.Drawing.Size(105, 42);
+            this.stopAutoBtn.TabIndex = 0;
+            this.stopAutoBtn.Text = "Stop!";
+            this.stopAutoBtn.UseVisualStyleBackColor = true;
+            this.stopAutoBtn.Click += new System.EventHandler(this.stopAutoBtn_Click);
+            // 
+            // startAutoBtn
+            // 
+            this.startAutoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startAutoBtn.Location = new System.Drawing.Point(49, 168);
+            this.startAutoBtn.Name = "startAutoBtn";
+            this.startAutoBtn.Size = new System.Drawing.Size(105, 42);
+            this.startAutoBtn.TabIndex = 0;
+            this.startAutoBtn.Text = "Start!";
+            this.startAutoBtn.UseVisualStyleBackColor = true;
+            this.startAutoBtn.Click += new System.EventHandler(this.startAutoBtn_Click);
             // 
             // serialConnectionBox
             // 
@@ -389,6 +468,7 @@
             this.Text = "Vacuum Robot Control App";
             this.manualControlBox.ResumeLayout(false);
             this.automaticControlBox.ResumeLayout(false);
+            this.automaticControlBox.PerformLayout();
             this.serialConnectionBox.ResumeLayout(false);
             this.serialConnectionBox.PerformLayout();
             this.robotStatusBox.ResumeLayout(false);
@@ -406,8 +486,7 @@
         private System.Windows.Forms.Button turnLeftBtn;
         private System.Windows.Forms.Button forwardBtn;
         private System.Windows.Forms.GroupBox automaticControlBox;
-        private System.Windows.Forms.Button wallFollowBtn;
-        private System.Windows.Forms.Button randomWalkBtn;
+        private System.Windows.Forms.Button startAutoBtn;
         private System.Windows.Forms.GroupBox serialConnectionBox;
         private System.Windows.Forms.Button disconnectBtn;
         private System.Windows.Forms.Button connectBtn;
@@ -428,6 +507,12 @@
         private System.Windows.Forms.Button automaticModeBtn;
         private System.Windows.Forms.Button manualModeBtn;
         private System.IO.Ports.SerialPort RFserialPort;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox scheduleCheckBox;
+        private System.Windows.Forms.ComboBox minutesComboBox;
+        private System.Windows.Forms.ComboBox hoursComboBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button stopAutoBtn;
     }
 }
 
