@@ -1,6 +1,6 @@
 // Function:
 /*Get obstacle distance from ultrasonic sensor*/
-void GetObstacleDistance(int trigPin, int echoPin, float& distance)
+void GetObstacleDistance(int trigPin, int echoPin, double& distance)
 {
   unsigned long duration;
   /*Sets the trigPin states*/

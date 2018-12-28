@@ -46,6 +46,9 @@ void FollowWall()
   }
   else
   {
-    
+    myPID.Compute();
+    pwmL = defaultPWML - output;
+    pwmR = defaultPWMR + output;
+    MoveForward();
   }
 }
